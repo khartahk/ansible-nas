@@ -25,7 +25,7 @@
 - name: Nextcloud Docker Container
   docker_container:
     name: nextcloud
-    image: nextcloud:14
+    image: nextcloud:15
     pull: true
     links:
         - nextcloud-mysql:mysql
@@ -38,7 +38,7 @@
       MYSQL_DATABASE: "nextcloud"
       MYSQL_USER: "nextcloud-user"
       MYSQL_PASSWORD: "nextcloud-pass"
-      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud.{{ ansible_nas_domain }}"
+      NEXTCLOUD_TRUSTED_DOMAINS: "nextcloud.{{ ansible_nas_domain }} {{ nextcloud_trusted_domains | default('') }}"
     restart_policy: unless-stopped
     memory: 1g
     labels:

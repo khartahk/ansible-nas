@@ -4,9 +4,9 @@
 # Set these options to true or false to toggle specific features
 
 # External Access
-# Traefik will allow access to certain applications externally. To enable this you'll either; a domain name that points to your 
+# Traefik will allow access to certain applications externally. To enable this you'll either; a domain name that points to your
 # home static IP address, the cloudflare with the cloudflare_ddns dynamic DNS container enabled, or use a dynamic DNS provider like no-ip.
-# You'll also need to map ports 80 and 443 from your router to your ansible-nas server, then enable the per-app "availble_externally" 
+# You'll also need to map ports 80 and 443 from your router to your ansible-nas server, then enable the per-app "availble_externally"
 # settings.
 traefik_enabled: false
 
@@ -445,6 +445,12 @@ glances_available_externally: "false"
 ###
 nextcloud_available_externally: "false"
 nextcloud_data_directory: "{{ docker_home }}/nextcloud"
+
+# Trusted domains including nextcloud.{{ ansible_nas_domain }}
+# ansible_nas_domain: ansible.tld
+# nextcloud_trusted_domains: next.ansible.tld
+# complete list: nextcloud.ansible.tld next.ansible.tld
+nextcloud_trusted_domains: ""
 
 ###
 ### nginx
