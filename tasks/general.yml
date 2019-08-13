@@ -4,6 +4,14 @@
     src: ansible-nas/motd.txt
     dest: /etc/motd
 
+- name: Install apt-add-repository
+  apt:
+    update_cache: yes
+    name:
+      - software-properties-common
+  register: result
+  until: result is succeeded
+
 - name: Enable Universe repository
   raw: apt-add-repository universe
   register: add_repo_result
