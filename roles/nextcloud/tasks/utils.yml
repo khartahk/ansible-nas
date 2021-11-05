@@ -2,7 +2,6 @@
 
 - name: Template files
   tags:
-    - nextcloud
     - nextcloud:utils
     - nextcloud:utils:template
   template:
@@ -17,7 +16,6 @@
     minute: "*/5"
     name: "nextcloud cronjob"
   tags:
-    - nextcloud
     - nextcloud:utils
     - nextcloud:utils:cronjob
   when: nextcloud_utils_cronjob
@@ -37,7 +35,6 @@
     mode: '0644'
     path: "{{ nextcloud_utils_logrotate_path }}"
   tags:
-    - nextcloud
     - nextcloud:utils
     - nextcloud:utils:logrotate
   when: nextcloud_utils_logrotate
