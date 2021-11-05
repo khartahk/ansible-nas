@@ -13,8 +13,8 @@ nextcloud_data_subdirectories_custom: []
 
 nextcloud_utils_enabled: false
 nextcloud_utils_templates:
-- src:  "nginx.conf.j2"
-  dest: "{{ nextcloud_data_directory }}/nginx/nginx.conf"
+  - src: "nginx.conf.j2"
+    dest: "{{ nextcloud_data_directory }}/nginx/nginx.conf"
 nextcloud_utils_templates_custom: []
 nextcloud_utils_logrotate_path: "/etc/logrotate.d/nextcloud"
 nextcloud_utils_log_path: "nextcloud/data/nextcloud.log"
