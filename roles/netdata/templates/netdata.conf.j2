@@ -1,0 +1,4 @@
+{% for key in netdata_config %}
+[{{ key }}]
+{# { netdata_config[[key][0]]|join("\n") } #}
+{% endfor %}
