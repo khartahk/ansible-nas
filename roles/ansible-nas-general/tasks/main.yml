@@ -4,6 +4,15 @@
     src: motd.txt
     dest: /etc/motd
 
+- name: Enable Universe repository
+  raw: apt-add-repository universe
+  register: add_repo_result
+  changed_when: "'distribution component enabled for all sources' in add_repo_result.stdout"
+  until: add_repo_result.rc == 0
+  retries: 3
+  delay: 1
+  when: not ansible_check_mode
+
 - name: Update apt-cache
   apt:
     update_cache: yes
@@ -11,7 +20,7 @@
   register: result
   until: result is succeeded
 
-- name: Upgrade all packages # noqa package-latest
+- name: Upgrade all packages
   apt:
     upgrade: yes
     state: latest
@@ -40,8 +49,8 @@
   file:
     path: "{{ item.path }}"
     state: directory
-    owner: ansible-nas
-    group: ansible-nas
+    owner: "{{ item.owner | default('ansible-nas') }}"
+    group: "{{ item.group | default('ansible-nas') }}"
     mode: "u=rwX,g=rwX,o=rX"
     recurse: false
   loop: "{{ samba_shares }}"
