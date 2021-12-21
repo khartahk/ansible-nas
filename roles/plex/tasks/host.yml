@@ -1,0 +1,27 @@
+---
+- name: Add repo signing key
+  apt_key:
+    id: 97203C7B3ADCA79D
+    url: https://downloads.plex.tv/plex-keys/PlexSign.key
+    state: present
+
+- name: Add repo
+  apt_repository:
+    repo: deb https://downloads.plex.tv/repo/deb public main
+    state: present
+    filename: plexmediaserver
+
+- name: Install on Host system
+  apt:
+    update_cache: yes
+    name:
+      - plexmediaserver
+  register: result
+  until: result is succeeded
+
+- name: Add plex user to groups used for multimedia files (allows view|edit)
+  user:
+    name: plex
+    groups: "{{ plex_user_groups }}"
+    append: yes
+  when: plex_user_groups | length > 0
