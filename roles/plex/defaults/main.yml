@@ -1,5 +1,6 @@
 ---
 plex_enabled: false
+plex_host: false
 plex_available_externally: false
 
 # directories
@@ -15,6 +16,7 @@ plex_audiobooks_directory: "{{ audiobooks_root }}"
 # uid / gid
 plex_user_id: "0"
 plex_group_id: "0"
+plex_user_groups: []
 
 # If you're paranoid, set permissions to "ro" so Plex won't ever be able to
 # delete your files
