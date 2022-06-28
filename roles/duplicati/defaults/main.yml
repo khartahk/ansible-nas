@@ -15,6 +15,7 @@ duplicati_group_id: "0"
 # network
 duplicati_port: "8200"
 duplicati_hostname: "duplicati"
+duplicati_ipwhitelist: "0.0.0.0/0"
 
 duplicati_memory: 1g
 

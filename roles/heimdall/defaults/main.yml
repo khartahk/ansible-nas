@@ -10,6 +10,7 @@ heimdall_data_directory: "{{ docker_home }}/heimdall"
 heimdall_port_http: "10080"
 heimdall_port_https: "10443"
 heimdall_hostname: heimdall
+heimdall_ipwhitelist: "0.0.0.0/0"
 
 # uid / gid
 heimdall_user_id: "1310"
