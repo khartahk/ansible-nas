@@ -11,7 +11,6 @@ docker_image_directory: "{{ docker_home }}/data"
 # You might want to change this to ZFS, depending on your underlying filesystem.
 docker_storage_driver: overlay2
 
-# Docker daemon configuration options added to /etc/docker/daemon.json
 docker_daemon_json:
-  - '"data-root": "{{ docker_image_directory }}"'
-  - '"storage-driver": "{{ docker_storage_driver }}"'
+  data-root: "{{ docker_image_directory }}"
+  storage-driver: "{{ docker_storage_driver }}"
