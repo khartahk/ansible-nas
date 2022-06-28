@@ -46,4 +46,6 @@
       traefik.http.routers.heimdall.tls.certresolver: "letsencrypt"
       traefik.http.routers.heimdall.tls.domains[0].main: "{{ ansible_nas_domain }}"
       traefik.http.routers.heimdall.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
+      traefik.http.routers.heimdall.middlewares: "heimdall-ipwhitelist@docker"
+      traefik.http.middlewares.heimdall-ipwhitelist.ipwhitelist.sourcerange: "{{ heimdall_ipwhitelist }}"
       traefik.http.services.heimdall.loadbalancer.server.port: "80"

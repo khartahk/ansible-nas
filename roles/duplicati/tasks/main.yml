@@ -6,7 +6,7 @@
   with_items:
     - "{{ duplicati_data_directory }}"
 
-- name: Dupicati Docker Container
+- name: Duplicati Docker Container
   docker_container:
     name: duplicati
     image: linuxserver/duplicati
@@ -30,4 +30,6 @@
       traefik.http.routers.duplicati.tls.certresolver: "letsencrypt"
       traefik.http.routers.duplicati.tls.domains[0].main: "{{ ansible_nas_domain }}"
       traefik.http.routers.duplicati.tls.domains[0].sans: "*.{{ ansible_nas_domain }}"
+      traefik.http.routers.duplicati.middlewares: "duplicati-ipwhitelist@docker"
+      traefik.http.middlewares.duplicati-ipwhitelist.ipwhitelist.sourcerange: "{{ duplicati_ipwhitelist }}"
       traefik.http.services.duplicati.loadbalancer.server.port: "8200"
