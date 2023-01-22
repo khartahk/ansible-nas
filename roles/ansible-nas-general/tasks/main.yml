@@ -20,7 +20,7 @@
   register: result
   until: result is succeeded
 
-- name: Upgrade all packages # noqa package-latest
+- name: Upgrade all packages
   apt:
     upgrade: yes
     state: latest
