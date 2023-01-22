@@ -28,6 +28,19 @@ netdata_template_files:
     force: "true"
 netdata_template_files_custom: []
 
+# directories
+netdata_data_directory: "{{ docker_home }}/netdata"
+
+netdata_directories:
+  - "{{ netdata_data_directory }}"
+netdata_directories_custom: []
+
+netdata_template_files:
+  - src: netdata.conf.j2
+    dest: "{{ netdata_data_directory }}/etc/netdata.conf"
+    force: "true"
+netdata_template_files_custom: []
+
 # network
 netdata_hostname: "netdata"
 netdata_port: "19999"
